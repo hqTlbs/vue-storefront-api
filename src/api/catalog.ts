@@ -44,10 +44,7 @@ export default ({config, db}) => async function (req, res, body) {
   // Request method handling: exit if not GET or POST
   // Other methods - like PUT, DELETE etc. should be available only for authorized users or not available at all)
   if (!(req.method === 'GET' || req.method === 'POST' || req.method === 'OPTIONS')) {
-    const errMessage = 'ERROR: ' + req.method + ' request method is not supported.';
-    console.error(errMessage);
-    apiError(res, errMessage);
-    return;
+    throw new Error('ERROR: ' + req.method + ' request method is not supported.')
   }
 
   let responseFormat = 'standard'
@@ -57,51 +54,31 @@ export default ({config, db}) => async function (req, res, body) {
       try {
         requestBody = JSON.parse(decodeURIComponent(req.query.request))
       } catch (err) {
-        console.error(err);
-        apiError(res, err);
-        return;
+        throw new Error(err)
       }
     }
   }
 
   if (req.query.request_format === 'search-query') { // search query and not Elastic DSL - we need to translate it
-    try {
-      const customFilters = await loadCustomFilters(config)
-      requestBody = await elasticsearch.buildQueryBodyFromSearchQuery({ config, queryChain: bodybuilder(), searchQuery: new SearchQuery(requestBody), customFilters })
-    } catch (err) {
-      console.error(err);
-      apiError(res, err);
-      return;
-    }
+    const customFilters = await loadCustomFilters(config)
+    requestBody = await elasticsearch.buildQueryBodyFromSearchQuery({ config, queryChain: bodybuilder(), searchQuery: new SearchQuery(requestBody), customFilters })
   }
   if (req.query.response_format) responseFormat = req.query.response_format
-
   const urlSegments = req.url.split('/')
 
   let indexName = ''
   let entityType = ''
-  if (urlSegments.length < 2) { 
-    const errMessage = 'No index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/<entity_type>_search';
-    console.error(errMessage);
-    apiError(res, errMessage);
-    return;
-  } else {
+  if (urlSegments.length < 2) { throw new Error('No index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/<entity_type>_search') } else {
     indexName = urlSegments[1]
 
     if (urlSegments.length > 2) { entityType = urlSegments[2] }
 
     if (config.elasticsearch.indices.indexOf(indexName) < 0) {
-      const errMessage = 'Invalid / inaccessible index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/_search';
-      console.error(errMessage);
-      apiError(res, errMessage);
-      return;
+      throw new Error('Invalid / inaccessible index name given in the URL. Please do use following URL format: /api/catalog/<index_name>/_search')
     }
 
     if (urlSegments[urlSegments.length - 1].indexOf('_search') !== 0) {
-      const errMessage = 'Please do use following URL format: /api/catalog/<index_name>/_search';
-      console.error(errMessage);
-      apiError(res, errMessage);
-      return;
+      throw new Error('Please do use following URL format: /api/catalog/<index_name>/_search')
     }
   }
 

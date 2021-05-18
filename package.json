@@ -122,6 +122,9 @@
     "tslib": "^1.9.3",
     "typescript": "3.7.*"
   },
+  "resolutions": {
+    "minipass": "2.7.0"
+  },
   "bugs": {
     "url": "https://github.com/vuestorefront/vue-storefront-api/issues"
   },
