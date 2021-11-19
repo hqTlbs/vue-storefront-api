@@ -3,9 +3,10 @@ import { multiStoreConfig } from './util'
 
 class CartProxy extends AbstractCartProxy {
   constructor (config, req) {
-    const Magento2Client = require('magento2-rest-client').Magento2Client;
+    const AmpClient = require('./AmpClient/AmpClient.js').AmpClient;
     super(config, req)
-    this.api = Magento2Client(multiStoreConfig(config.magento2.api, req));
+    this.config = config
+    this.api = AmpClient(multiStoreConfig(config.adn.api, req));
   }
 
   create (customerToken) {

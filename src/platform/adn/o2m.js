@@ -1,6 +1,6 @@
 import { productsEquals } from 'vsf-utilities'
 
-const Magento2Client = require('magento2-rest-client').Magento2Client;
+const AmpClient = require('./AmpClient/AmpClient.js').AmpClient;
 
 const config = require('config')
 const redis = require('../../lib/redis');
@@ -26,11 +26,12 @@ function isNumeric (val) {
  *
  * The Magento2 API: https://magento.stackexchange.com/questions/136028/magento-2-create-order-using-rest-api
  *
+ * @param {String} authToken
  * @param {json} orderData order data in format as described in '../models/order.md'
  * @param {Object} config global CLI configuration
  * @param {Function} done callback - @example done(new Error()) - to acknowledge problems
  */
-function processSingleOrder (orderData, config, job, done, logger = console) {
+function processSingleOrder (authToken, orderData, config, job, done, logger = console) {
   const TOTAL_STEPS = 4;
   const THREAD_ID = 'ORD:' + (job ? job.id : 1) + ' - '; // job id
   let currentStep = 1;
@@ -72,7 +73,7 @@ function processSingleOrder (orderData, config, job, done, logger = console) {
   let isThisAuthOrder = parseInt(orderData.user_id) > 0
   const userId = orderData.user_id
 
-  let apiConfig = config.magento2.api
+  let apiConfig = config.adn.api
   if (orderData.store_code) {
     if (config.availableStores.indexOf(orderData.store_code) >= 0) {
       apiConfig = Object.assign({}, apiConfig, { url: apiConfig.url + '/' + orderData.store_code })
@@ -81,23 +82,27 @@ function processSingleOrder (orderData, config, job, done, logger = console) {
       logger.error('Invalid store code', orderData.store_code)
     }
   }
-  const api = Magento2Client(apiConfig);
+  const api = AmpClient(apiConfig);
 
   logger.info('> Order Id', orderData.order_id)
   logger.info('> Is order authorized?', isThisAuthOrder)
   logger.info('> User Id', userId)
 
   let cartId = orderData.cart_id
-  const cartIdPrepare = isThisAuthOrder ? api.cart.create(null, userId) : (cartId ? new Promise((resolve, reject) => {
+  const cartIdPrepare = isThisAuthOrder ? api.cart.create(authToken, userId) : (cartId ? new Promise((resolve, reject) => {
     resolve(cartId)
   }) : api.cart.create(null))
 
   logger.info(THREAD_ID + '> Cart Id', cartId)
 
   const processCart = (result) => {
-    cartId = result
+    cartId = result.id
 
     logger.info(THREAD_ID + '< Cart Id', cartId)
+
+    logger.error('Force getting back', {})
+    if (job) job.attempts(3).backoff({ delay: 60 * 1000, type: 'fixed' }).save()
+    return done(composeError('Backend (AP+) is not live, because we are on test environment. Order is NOT processed, so do not worry.', {}));
 
     // load current cart from the Magento to synchronize elements
     api.cart.pull(null, cartId, null, isThisAuthOrder).then((serverItems) => {
@@ -256,7 +261,7 @@ function processSingleOrder (orderData, config, job, done, logger = console) {
                     platform_order_id: result,
                     transmited: true,
                     transmited_at: new Date(),
-                    platform: 'magento2',
+                    platform: 'adn',
                     order: orderData
                   }));
                   redisClient.set('order$$totals$$' + orderData.order_id, JSON.stringify(result[1]));

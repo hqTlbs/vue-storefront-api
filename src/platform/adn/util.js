@@ -10,8 +10,8 @@ export function multiStoreConfig (apiConfig, req) {
   let storeCode = getCurrentStoreCode(req)
 
   if (storeCode && config.availableStores.indexOf(storeCode) >= 0) {
-    if (config.magento2['api_' + storeCode]) {
-      confCopy = Object.assign({}, config.magento2['api_' + storeCode]) // we're to use the specific api configuration - maybe even separate magento instance
+    if (config.adn['api_' + storeCode]) {
+      confCopy = Object.assign({}, config.adn['api_' + storeCode]) // we're to use the specific api configuration - maybe even separate magento instance
     }
     confCopy.url = confCopy.url + '/' + storeCode
   } else {

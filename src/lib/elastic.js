@@ -195,7 +195,6 @@ function reIndex (db, fromIndexName, toIndexName, next) {
 
 function createIndex (db, indexName, collectionName, next) {
   let indexSchema = collectionName ? loadSchema(collectionName) : loadSchema('index', '5.6'); /** index schema is used only for 5.6 */
-
   const step2 = () => {
     db.indices.delete({
       'index': indexName
@@ -246,11 +245,11 @@ function loadSchema (entityType, apiVersion = '7.1') {
     return null
   }
   let schemaContent = jsonFile.readFileSync(rootSchemaPath)
-  let elasticSchema = parseInt(apiVersion) < 6 ? schemaContent : Object.assign({}, { mappings: schemaContent });
+  let elasticSchema = Object.assign({}, schemaContent);
   const extensionsPath = path.join(__dirname, '../../config/elastic.schema.' + entityType + '.extension.json');
   if (fs.existsSync(extensionsPath)) {
     schemaContent = jsonFile.readFileSync(extensionsPath)
-    let elasticSchemaExtensions = parseInt(apiVersion) < 6 ? schemaContent : Object.assign({}, { mappings: schemaContent });
+    let elasticSchemaExtensions = Object.assign({}, schemaContent);
     elasticSchema = _.merge(elasticSchema, elasticSchemaExtensions) // user extensions
   }
   return elasticSchema

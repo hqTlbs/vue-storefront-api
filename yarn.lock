@@ -992,6 +992,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
+axios@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.24.0.tgz#804e6fa1e4b9c5288501dd9dff56a7a0940d20d6"
+  integrity sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
+  dependencies:
+    follow-redirects "^1.14.4"
+
 babel-jest@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-24.8.0.tgz#5c15ff2b28e20b0f45df43fe6b7f2aae93dba589"
@@ -1657,6 +1664,14 @@ convert-source-map@^1.1.0, convert-source-map@^1.4.0:
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"
   dependencies:
     safe-buffer "~5.1.1"
+
+cookie-parser@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.5.tgz#3e572d4b7c0c80f9c61daf604e4336831b5d1d49"
+  integrity sha512-f13bPUj/gG/5mDr+xLmSxxDsB9DQiTIfhJS/sqjrmfAWiAN+x2O4i/XguTL9yDZ+/IFDanJ+5x7hC4CXT9Tdzw==
+  dependencies:
+    cookie "0.4.0"
+    cookie-signature "1.0.6"
 
 cookie-signature@1.0.6:
   version "1.0.6"
@@ -2686,6 +2701,11 @@ flat-cache@^2.0.1:
 flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
+
+follow-redirects@^1.14.4:
+  version "1.14.5"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.5.tgz#f09a5848981d3c772b5392309778523f8d85c381"
+  integrity sha512-wtphSXy7d4/OR+MvIFbCVBDzZ5520qV8XfPklSN5QtxuMUJZ+b0Wnst1e1lCDocfzuCkHqj8k0FpZqO+UIaKNA==
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
@@ -4415,9 +4435,9 @@ lru-cache@^5.0.0:
   dependencies:
     yallist "^3.0.2"
 
-"mage2vuestorefront@git+https://github.com/DivanteLtd/mage2vuestorefront.git":
-  version "1.11.0"
-  resolved "git+https://github.com/DivanteLtd/mage2vuestorefront.git#6b477d35b6d11f935b1643938881969f16c87c04"
+"mage2vuestorefront@git+https://github.com/vuestorefront/mage2vuestorefront.git":
+  version "1.11.1"
+  resolved "git+https://github.com/vuestorefront/mage2vuestorefront.git#a2abf48ec40d9fb761ee3f5117a1c87dc7f7c0c6"
   dependencies:
     "@elastic/elasticsearch" "^7.3.0"
     agentkeepalive "^3.3.0"
@@ -4428,8 +4448,8 @@ lru-cache@^5.0.0:
     jsonfile "^4.0.0"
     jwt-simple "^0.5.1"
     kue "^0.11.5"
-    lodash "^4.17.13"
-    magento2-rest-client "0.0.2"
+    lodash "^4.17.19"
+    magento2-rest-client "https://github.com/DivanteLtd/magento2-rest-client"
     moment "^2.22.2"
     node-sync "^0.2.1"
     passport "^0.3.2"
@@ -4449,19 +4469,19 @@ lru-cache@^5.0.0:
     request "^2.72.0"
     winston "^2.2.0"
 
-magento2-rest-client@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/magento2-rest-client/-/magento2-rest-client-0.0.2.tgz#2a6ef230c88129a8680b63ead3793ea7e99bf6a4"
-  integrity sha1-Km7yMMiBKahoC2Pq03k+p+mb9qQ=
+"magento2-rest-client@github:vuestorefront/magento2-rest-client":
+  version "0.0.14"
+  uid "3ed81008e617abfed347ed42fb52ac9d72c8705b"
+  resolved "https://codeload.github.com/vuestorefront/magento2-rest-client/tar.gz/3ed81008e617abfed347ed42fb52ac9d72c8705b"
   dependencies:
     humps "^1.1.0"
     oauth-1.0a "^1.0.1"
     request "^2.72.0"
     winston "^2.2.0"
 
-"magento2-rest-client@github:DivanteLtd/magento2-rest-client":
-  version "0.0.12"
-  resolved "https://codeload.github.com/DivanteLtd/magento2-rest-client/tar.gz/fb5adcb24fe25e097c2127a3ded5ef05e0fcb2f7"
+"magento2-rest-client@https://github.com/DivanteLtd/magento2-rest-client":
+  version "0.0.14"
+  resolved "https://github.com/DivanteLtd/magento2-rest-client#3ed81008e617abfed347ed42fb52ac9d72c8705b"
   dependencies:
     humps "^1.1.0"
     oauth-1.0a "^1.0.1"
@@ -4678,19 +4698,13 @@ minimist@~0.0.1:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
-minipass@^2.2.1, minipass@^2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.5.tgz#cacebe492022497f656b0f0f51e2682a9ed2d848"
+minipass@2.7.0, minipass@^2.2.1, minipass@^2.3.5, minipass@^3.0.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.7.0.tgz#c01093a82287c8331f08f1075499fef124888796"
+  integrity sha512-+CbZuJ4uEiuTL9s5Z/ULkuRg1O9AvVqVvceaBrhbYHIy1R3dPO7FMmG0nZLD0//ZzZq0MUOjwdBQvk+w1JHUqQ==
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
-
-minipass@^3.0.0:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/minipass/-/minipass-3.1.1.tgz#7607ce778472a185ad6d89082aa2070f79cedcd5"
-  integrity sha512-UFqVihv6PQgwj8/yTGvl9kPz7xIAY+R5z6XYjRInD3Gk3qx6QGSD6zEcpeG4Dy/lQnv1J6zv8ejV90hyYIKf3w==
-  dependencies:
-    yallist "^4.0.0"
 
 minizlib@^1.2.1:
   version "1.2.1"
@@ -6694,9 +6708,9 @@ stealthy-require@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
 
-"storefront-query-builder@https://github.com/DivanteLtd/storefront-query-builder.git":
-  version "1.0.1"
-  resolved "https://github.com/DivanteLtd/storefront-query-builder.git#0ef1f9760eb44edce5b9464a9145ce0a7517a419"
+"storefront-query-builder@https://github.com/vuestorefront/storefront-query-builder.git":
+  version "1.0.2"
+  resolved "https://github.com/vuestorefront/storefront-query-builder.git#7416993f07927f598d22ca448462f0d3f0288f20"
   dependencies:
     "@typescript-eslint/parser" "^2.26.0"
     clone-deep "^4.0.1"

@@ -39,7 +39,6 @@
     "lint": "eslint --ext .js,.ts src migrations scripts --fix"
   },
   "pre-commit": [
-    "lint"
   ],
   "repository": {
     "type": "git",
@@ -52,11 +51,13 @@
     "@google-cloud/storage": "^3.0.3",
     "ajv": "^6.4.0",
     "ajv-keywords": "^3.4.0",
+    "axios": "^0.24.0",
     "body-parser": "^1.18.2",
     "bodybuilder": "2.2.21",
     "commander": "^5.1.0",
     "compression": "^1.7.2",
     "config": "^1.30.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.4",
     "cross-env": "^7.0.2",
     "elasticdump": "^6.9.1",

@@ -19,7 +19,9 @@ export default ({ config, db }) => {
     const cartProxy = _getProxy(req)
     const token = getToken(req)
     cartProxy.create(token).then((result) => {
-      apiStatus(res, result, 200);
+      if (result && result.id) {
+        apiStatus(res, result.id, 200);
+      }
     }).catch(err => {
       apiError(res, err);
     })

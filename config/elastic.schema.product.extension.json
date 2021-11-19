@@ -1,109 +1,120 @@
 {
-  "properties": {
-    "position": {
-      "type": "integer"
-    },
-    "tax_class_id": {
-      "type": "integer"
-    },
-    "required_options": {
-      "type": "integer"
-    },
-    "has_options": {
-      "type": "integer"
-    },
-    "Size_options": {
-      "type": "keyword"
-    },
-    "Color_options": {
-      "type": "keyword"
-    },
-    "series_1_id": {
-      "type": "keyword"
-    },
-    "series_1_value1": {
-      "type": "keyword"
-    },
-    "series_1_value2": {
-      "type": "keyword"
-    },
-    "series_1_value3": {
-      "type": "keyword"
-    },
-    "series_1_value4": {
-      "type": "keyword"
-    },
-    "series_2_id": {
-      "type": "keyword"
-    },
-    "series_2_value1": {
-      "type": "keyword"
-    },
-    "series_2_value2": {
-      "type": "keyword"
-    },
-    "series_2_value3": {
-      "type": "keyword"
-    },
-    "series_2_value4": {
-      "type": "keyword"
-    },
-    "series_3_id": {
-      "type": "keyword"
-    },
-    "series_3_value1": {
-      "type": "keyword"
-    },
-    "series_3_value2": {
-      "type": "keyword"
-    },
-    "series_3_value3": {
-      "type": "keyword"
-    },
-    "series_3_value4": {
-      "type": "keyword"
-    },
-    "series_4_id": {
-      "type": "keyword"
-    },
-    "series_4_value1": {
-      "type": "keyword"
-    },
-    "series_4_value2": {
-      "type": "keyword"
-    },
-    "series_4_value3": {
-      "type": "keyword"
-    },
-    "series_4_value4": {
-      "type": "keyword"
-    },
-    "manufacturer_id": {
-      "type": "keyword"
-    },
-    "manufacturer_name": {
-      "type": "keyword"
-    },
-    "manufacturer_image": {
-      "type": "keyword"
-    },
-    "position_for_sort": {
-      "type": "keyword"
-    },
-    "manu": {
-      "type": "keyword"
-    },
-    "term": {
-      "type": "keyword"
-    },
-    "modell": {
-      "type": "keyword"
-    },
-    "name": {
-      "type": "text",
-      "fields": {
-        "keyword": {
-          "type": "keyword"
+  "mappings": {
+    "properties": {
+      "position": {
+        "type": "integer"
+      },
+      "tax_class_id": {
+        "type": "integer"
+      },
+      "required_options": {
+        "type": "integer"
+      },
+      "has_options": {
+        "type": "integer"
+      },
+      "Size_options": {
+        "type": "keyword"
+      },
+      "Color_options": {
+        "type": "keyword"
+      },
+      "series_1_id": {
+        "type": "keyword"
+      },
+      "series_1_value1": {
+        "type": "keyword"
+      },
+      "series_1_value2": {
+        "type": "keyword"
+      },
+      "series_1_value3": {
+        "type": "keyword"
+      },
+      "series_1_value4": {
+        "type": "keyword"
+      },
+      "series_2_id": {
+        "type": "keyword"
+      },
+      "series_2_value1": {
+        "type": "keyword"
+      },
+      "series_2_value2": {
+        "type": "keyword"
+      },
+      "series_2_value3": {
+        "type": "keyword"
+      },
+      "series_2_value4": {
+        "type": "keyword"
+      },
+      "series_3_id": {
+        "type": "keyword"
+      },
+      "series_3_value1": {
+        "type": "keyword"
+      },
+      "series_3_value2": {
+        "type": "keyword"
+      },
+      "series_3_value3": {
+        "type": "keyword"
+      },
+      "series_3_value4": {
+        "type": "keyword"
+      },
+      "series_4_id": {
+        "type": "keyword"
+      },
+      "series_4_value1": {
+        "type": "keyword"
+      },
+      "series_4_value2": {
+        "type": "keyword"
+      },
+      "series_4_value3": {
+        "type": "keyword"
+      },
+      "series_4_value4": {
+        "type": "keyword"
+      },
+      "ekd_pflicht": {
+        "type": "keyword"
+      },
+      "manufacturer_id": {
+        "type": "keyword"
+      },
+      "manufacturer_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "manufacturer_image": {
+        "type": "keyword"
+      },
+      "position_for_sort": {
+        "type": "keyword"
+      },
+      "manu": {
+        "type": "keyword"
+      },
+      "term": {
+        "type": "keyword"
+      },
+      "modell": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
         }
       }
     }

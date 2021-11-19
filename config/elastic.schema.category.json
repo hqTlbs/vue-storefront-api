@@ -1,4 +1,5 @@
 {
+  "mappings": {
    "properties": {
        "url_key": {"type": "keyword"},
        "url_path": {"type": "keyword"},
@@ -16,4 +17,5 @@
            "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
         }
     }
+  }
 }
