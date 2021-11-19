@@ -13,7 +13,7 @@
     "outDir": "dist",
     "sourceMap": true,
     "baseUrl": ".",
-    "lib": ["es7"],
+    "lib": ["es7", "dom"],
     "preserveSymlinks": true
   },
   "include": [
