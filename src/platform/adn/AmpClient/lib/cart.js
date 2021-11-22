@@ -8,7 +8,7 @@ module.exports = function (restClient) {
   var module = {};
 
   module.create = function (customerToken, customerId = null) {
-    return API.post(`/jwt_carts`,
+    return API.post(`/carts`,
       {
         user: customerId,
         company: 'api/companies/21067',
@@ -82,7 +82,7 @@ module.exports = function (restClient) {
       return restClient.get('/carts/' + cartId + '/items/');
     } else {
       if (customerToken) {
-        return API.get('/jwt_carts/' + cartId, {
+        return API.get('/carts/' + cartId, {
           headers: {
             'Authorization': 'Bearer ' + customerToken
           }

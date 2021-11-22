@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://api-platform.adn.d3v/api/jwt/', // url = base url + request url
+  baseURL: 'http://shop-middleware.adn.d3v/api/', // url = base url + request url
   withCredentials: true, // send cookies when cross-domain requests
   timeout: 10000 // request timeout
 })
